@@ -51,7 +51,9 @@ const storage = new GridFsStorage({
 });
 
 const upload = multer({ storage });
-
+app.get('/demo', (req, res) => {
+  res.send("Working")
+})
 app.post("/", upload.single("img"), (req, res, err) => {
   console.log(req.body)
   res.send(req.files);
@@ -79,9 +81,7 @@ app.get("/:filename", (req, res) => {
     }
   });
 });
-app.get('/testt', (req, res) => {
-  res.send("Working")
-})
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
